@@ -28,15 +28,12 @@ def sorted_alphanumeric(data):
 
 class cifar10vgg:
     def __init__(self,train=True):
-        self.num_classes = 4
         self.weight_decay = 0.0005
-        self.x_shape = [32,32,3]
-
         self.model = self.build_model()
         if train:
             self.model = self.train(self.model)
         else:
-            self.model.load_weights('Bio_AlexNet_v2.h5')
+            self.model.load_weights('CRC_CNN1.h5')
 
 
     def build_model(self):
