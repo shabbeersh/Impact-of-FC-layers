@@ -30,7 +30,7 @@ class cifar100vgg:
         if train:
             self.model = self.train(self.model)
         else:
-            self.model.load_weights('CNN2_CIFAR100_.h5')
+            self.model.load_weights('CIFAR100_CNN2.h5')
 
     def build_model(self):
         # Build the network of vgg for 10 classes with massive dropout and weight decay as described in the paper.
