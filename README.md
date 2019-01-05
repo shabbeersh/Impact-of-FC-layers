@@ -1,5 +1,3 @@
-# Impact-of-FC-layers
-This research is carried out to find the necessity if fully connected (FC) layers in CNN for image classification.
 # Impact of Fully Connected layers in CNN for Image Classification
 This research is carried out to find the necessity if fully connected (FC) layers in CNN for image classification.
 
