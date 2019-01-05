@@ -27,7 +27,7 @@ class cifar10vgg:
         if train:
             self.model = self.train(self.model)
         else:
-            self.model.load_weights('CIFAR10_AlexNet_v2.h5')
+            self.model.load_weights('CIFAR10_CNN1.h5')
 
 
     def build_model(self):
