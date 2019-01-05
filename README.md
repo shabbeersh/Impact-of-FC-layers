@@ -14,6 +14,6 @@ For more details, please read our [paper](https://arxiv.org/abs/1810.02797).
 
 
 ## Acknowledgements
-The some amount of code is taken from [here](https://github.com/geifmany/cifar-vgg).
+The few blocks of code is taken from [here](https://github.com/geifmany/cifar-vgg).
 
 ## Citations
