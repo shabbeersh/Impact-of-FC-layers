@@ -22,10 +22,7 @@ start_time = 0
 
 class cifar10vgg:
     def __init__(self,train=True):
-        self.num_classes = 4
         self.weight_decay = 0.0005
-        self.x_shape = [35,35,3]
-
         self.model = self.build_model()
         if train:
             self.model = self.train(self.model)
@@ -142,10 +139,6 @@ class cifar10vgg:
         #optimization details
         sgd = optimizers.SGD(lr=learning_rate, decay=lr_decay, momentum=0.9, nesterov=True)
         model.compile(loss='categorical_crossentropy', optimizer=sgd,metrics=['accuracy'])
-        csv_log = keras.callbacks.CSVLogger(
-            '/home/shabbeer/Desktop/Impact of FC/Results_1/CIFAR-10/AlexNet/v2/CIFAR10_4096x4096x4096x64x10.csv',
-            append=True, separator=';')
-
         # training process in a for loop with learning rate drop every 25 epoches.
 
         import time
