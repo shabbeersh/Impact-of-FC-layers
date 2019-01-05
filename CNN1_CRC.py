@@ -172,10 +172,6 @@ class cifar10vgg:
         #optimization details
         sgd = optimizers.SGD(lr=learning_rate, decay=lr_decay, momentum=0.9, nesterov=True)
         model.compile(loss='categorical_crossentropy', optimizer=sgd,metrics=['accuracy'])
-        csv_log = keras.callbacks.CSVLogger(
-            '/home/shabbeer/Desktop/Impact of FC/Results_1/Bio-medical/AlexNet/v2/Bio_2048x2048x256x4.csv',
-            append=True, separator=';')
-
         # training process in a for loop with learning rate drop every 25 epoches.
 
         import time
@@ -184,7 +180,7 @@ class cifar10vgg:
                                          batch_size=batch_size),
                             steps_per_epoch=x_train.shape[0] // batch_size,
                             epochs=maxepoches,
-                            validation_data=(x_test, y_test),callbacks=[reduce_lr,csv_log],verbose=2)
+                            validation_data=(x_test, y_test),callbacks=[reduce_lr],verbose=2)
 
         print('Max Test accuracy:', max(history.history['val_acc']))
 
