@@ -89,7 +89,7 @@ class CNN3_TinyImageNet:
         model.add(MaxPooling2D(pool_size=(2, 2)))
         model.add(Dropout(0.5))
         model.add(Flatten())
-        model.add(Dense(100))
+        model.add(Dense(200))
         model.add(Activation('softmax'))
         model.summary()
         return model
