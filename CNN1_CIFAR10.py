@@ -22,7 +22,6 @@ start_time = 0
 
 class CNN1_CIFAR10:
     def __init__(self,train=True):
-        self.weight_decay = 0.0005
         self.model = self.build_model()
         if train:
             self.model = self.train(self.model)
