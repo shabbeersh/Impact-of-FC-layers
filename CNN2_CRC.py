@@ -26,17 +26,13 @@ def sorted_alphanumeric(data):
 
 
 
-class cifar10vgg:
+class CNN2:
     def __init__(self,train=True):
-        self.num_classes = 4
-        self.weight_decay = 0.0005
-        self.x_shape = [32,32,3]
-
         self.model = self.build_model()
         if train:
             self.model = self.train(self.model)
         else:
-            self.model.load_weights('cifar10vgg.h5')
+            self.model.load_weights('CNN2_CRC.h5')
 
 
     def build_model(self):
@@ -205,10 +201,6 @@ class cifar10vgg:
         #optimization details
         sgd = optimizers.SGD(lr=learning_rate, decay=lr_decay, momentum=0.9, nesterov=True)
         model.compile(loss='categorical_crossentropy', optimizer=sgd,metrics=['accuracy'])
-        csv_log = keras.callbacks.CSVLogger(
-            '/home/shabbeer/Desktop/Impact of FC/Results_1/Bio-medical/12/v2/Bio_512x512x4.csv',
-            append=True, separator=';')
-
         # training process in a for loop with learning rate drop every 25 epoches.
 
         import time
@@ -217,7 +209,7 @@ class cifar10vgg:
                                          batch_size=batch_size),
                             steps_per_epoch=x_train.shape[0] // batch_size,
                             epochs=maxepoches,
-                            validation_data=(x_test, y_test),callbacks=[reduce_lr,csv_log],verbose=2)
+                            validation_data=(x_test, y_test),callbacks=[reduce_lr],verbose=2)
 
         print('Max Test accuracy:', max(history.history['val_acc']))
 
@@ -273,7 +265,7 @@ if __name__ == '__main__':
     y_train = keras.utils.to_categorical(y_train, 4)
     y_test = keras.utils.to_categorical(y_test, 4)
 
-    model = cifar10vgg()
+    model = CNN2()
 
 
     print("---  Training time in seconds ---%s " % (time.time() - start_time))
