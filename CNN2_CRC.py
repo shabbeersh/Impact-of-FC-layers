@@ -26,7 +26,7 @@ def sorted_alphanumeric(data):
 
 
 
-class CNN2:
+class CNN2_CRC:
     def __init__(self,train=True):
         self.model = self.build_model()
         if train:
@@ -265,7 +265,7 @@ if __name__ == '__main__':
     y_train = keras.utils.to_categorical(y_train, 4)
     y_test = keras.utils.to_categorical(y_test, 4)
 
-    model = CNN2()
+    model = CNN2_CRC()
 
 
     print("---  Training time in seconds ---%s " % (time.time() - start_time))
