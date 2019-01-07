@@ -94,7 +94,6 @@ class CNN3_TinyImageNet:
         model.summary()
         return model
 
-
     def normalize(self,X_train,X_test):
         #this function normalize inputs for zero mean and unit variance
         # it is used when training a model.
@@ -110,19 +109,15 @@ class CNN3_TinyImageNet:
         #this function is used to normalize instances in production according to saved training set statistics
         # Input: X - a training set
         # Output X - a normalized training set according to normalization constants.
-
         #these values produced during first training and are general for the standard cifar10 training set normalization
         mean = 120.707
         std = 64.15
         return (x-mean)/(std+1e-7)
-
     def predict(self,x,normalize=True,batch_size=50):
         if normalize:
             x = self.normalize_production(x)
         return self.model.predict(x,batch_size)
-
     def train(self,model):
-
         #training parameters
         batch_size = 128
         maxepoches = 250
@@ -133,9 +128,7 @@ class CNN3_TinyImageNet:
         (x_train, y_train), (x_test, y_test) = cifar100.load_data()
         x_train = x_train.astype('float32')
         x_test = x_test.astype('float32')
-
         print(x_train.shape)
-
         x_train, x_test = self.normalize(x_train, x_test)
 
         y_train = keras.utils.to_categorical(y_train, 100)
@@ -144,7 +137,6 @@ class CNN3_TinyImageNet:
         def lr_scheduler(epoch):
             return learning_rate * (0.5 ** (epoch // lr_drop))
         reduce_lr = keras.callbacks.LearningRateScheduler(lr_scheduler)
-
         #data augmentation
         datagen = ImageDataGenerator(
             rotation_range=15,  # randomly rotate images in the range (degrees, 0 to 180)
@@ -154,18 +146,10 @@ class CNN3_TinyImageNet:
             vertical_flip=True)  # randomly flip images
         # (std, mean, and principal components if ZCA whitening is applied).
         datagen.fit(x_train)
-
-
-
         #optimization details
         sgd = optimizers.SGD(lr=learning_rate, decay=lr_decay, momentum=0.9, nesterov=True)
         model.compile(loss='categorical_crossentropy', optimizer=sgd,metrics=['accuracy'])
-        csv_log = keras.callbacks.CSVLogger(
-            '/home/shabbeer/Desktop/Impact of FC/Results_1/CIFAR-10/VGG/v2/CIFAR10_512X100_f1.csv',
-            append=True, separator=';')
-        model.save_weights('Fe_CIFAR100_CIFAR-VGG_feature_extraction_v3.h5')
         # training process in a for loop with learning rate drop every 25 epoches.
-
         import time
         start_time = time.time()
         history = model.fit_generator(datagen.flow(x_train, y_train,
@@ -175,18 +159,12 @@ class CNN3_TinyImageNet:
                             validation_data=(x_test, y_test),callbacks=[reduce_lr,csv_log],verbose=2)
 
         print('Max Test accuracy:', max(history.history['val_acc']))
-
         return model
-
 if __name__ == '__main__':
     (x_train, y_train), (x_test, y_test) = cifar100.load_data()
     x_train = x_train.astype('float32')
     x_test = x_test.astype('float32')
-
     print(x_train.shape)
-
-
-
     y_train = keras.utils.to_categorical(y_train, 100)
     y_test = keras.utils.to_categorical(y_test, 100)
 
