@@ -20,7 +20,7 @@ from keras import regularizers
 import time
 start_time = 0
 
-class cifar10vgg:
+class CNN1_CIFAR10:
     def __init__(self,train=True):
         self.weight_decay = 0.0005
         self.model = self.build_model()
@@ -171,7 +171,7 @@ if __name__ == '__main__':
     y_train = keras.utils.to_categorical(y_train, 10)
     y_test = keras.utils.to_categorical(y_test, 10)
 
-    model = cifar10vgg()
+    model = CNN1_CIFAR10()
 
 
     print("---  Training time in seconds ---%s " % (time.time() - start_time))
