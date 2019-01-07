@@ -7,7 +7,7 @@ The Convolutional Neural Networks (CNNs), in domains like computer vision, mostl
 
 The objective of the paper is represented using the below figure.
 
-![alt text](https://github.com/shabbeersh/Impact-of-FC-layers-in-CNN-for-Image-Classification/blob/master/Impact_FC_layers_CNN.png)
+![alt text](https://github.com/shabbeersh/Impact-of-FC-layers/blob/master/Impact_FC_layers_CNN.png)
 
 
 For more details, please read our [paper](https://arxiv.org/abs/1810.02797).
