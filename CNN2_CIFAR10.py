@@ -22,10 +22,6 @@ start_time = 0
 
 class CNN2_CIFAR10:
     def __init__(self,train=True):
-        self.num_classes = 4
-        self.weight_decay = 0.0005
-        self.x_shape = [35,35,3]
-
         self.model = self.build_model()
         if train:
             self.model = self.train(self.model)
