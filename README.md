@@ -12,6 +12,9 @@ The objective of the paper is represented using the below figure.
 
 For more details, please read our [paper](https://arxiv.org/abs/1810.02797).
 
+## Requirements
+Keras >= 2.1.2
+Tensorflow-gpu >= 1.2
 
 ## Acknowledgements
 The few blocks of code is taken from [here](https://github.com/geifmany/cifar-vgg).
