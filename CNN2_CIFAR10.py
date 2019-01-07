@@ -20,7 +20,7 @@ from keras import regularizers
 import time
 start_time = 0
 
-class cifar10vgg:
+class CNN2_CIFAR10:
     def __init__(self,train=True):
         self.num_classes = 4
         self.weight_decay = 0.0005
@@ -30,7 +30,7 @@ class cifar10vgg:
         if train:
             self.model = self.train(self.model)
         else:
-            self.model.load_weights('CIFAR10_CNN2.h5')
+            self.model.load_weights('CNN2_CIFAR10.h5')
 
     def build_model(self):
         # Build the network of vgg for 10 classes with massive dropout and weight decay as described in the paper.
@@ -192,7 +192,7 @@ if __name__ == '__main__':
     y_train = keras.utils.to_categorical(y_train, 10)
     y_test = keras.utils.to_categorical(y_test, 10)
 
-    model = cifar10vgg()
+    model = CNN2_CIFAR10()
 
 
     print("---  Training time in seconds ---%s " % (time.time() - start_time))
