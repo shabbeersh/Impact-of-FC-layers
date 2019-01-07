@@ -13,7 +13,7 @@ The objective of the paper is represented using the below figure.
 For more details, please read our [paper](https://arxiv.org/abs/1810.02797).
 
 ## Requirements
-Keras >= 2.1.2
+Keras >= 2.1.2 <br/>
 Tensorflow-gpu >= 1.2
 
 ## Acknowledgements
