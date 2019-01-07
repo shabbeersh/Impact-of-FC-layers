@@ -2,7 +2,6 @@ from __future__ import print_function
 import keras
 from keras.utils import np_utils
 import scipy
-from keras.datasets import cifar100
 from keras.preprocessing.image import ImageDataGenerator
 from keras.models import Sequential
 from keras.preprocessing import image
@@ -20,17 +19,13 @@ from keras import regularizers
 import time
 start_time = 0
 
-class cifar10vgg:
+class CNN3_TinyImageNet:
     def __init__(self,train=True):
-        self.num_classes = 100
-        self.weight_decay = 0.0005
-        self.x_shape = [35,35,3]
-
         self.model = self.build_model()
         if train:
             self.model = self.train(self.model)
         else:
-            self.model.load_weights('Fe_CIFAR100_CIFAR-VGG_feature_extraction_v2.h5')
+            self.model.load_weights('CNN3_TinyImageNet.h5')
 
 
     def build_model(self):
@@ -203,7 +198,7 @@ if __name__ == '__main__':
     y_train = keras.utils.to_categorical(y_train, 100)
     y_test = keras.utils.to_categorical(y_test, 100)
 
-    model = cifar10vgg()
+    model = CNN3_TinyImageNet()
 
 
     print("---  Training time in seconds ---%s " % (time.time() - start_time))
