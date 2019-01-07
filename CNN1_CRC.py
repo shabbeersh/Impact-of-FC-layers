@@ -43,11 +43,9 @@ class CNN1_CRC:
         weight_decay = 0.0005
         model.add(Conv2D(96, (5, 5), input_shape=(35, 35, 3), activation='relu', kernel_regularizer=regularizers.l2(weight_decay)))
         model.add(BatchNormalization())
-
         model.add(Conv2D(256, (5, 5), activation='relu',kernel_regularizer=regularizers.l2(weight_decay)))
         model.add(BatchNormalization())
         model.add(MaxPooling2D(pool_size=(2, 2), name='block1_maxpooling2'))
-
         model.add(Conv2D(384, (3, 3), activation='relu', name='block1_conv3', padding='same',kernel_regularizer=regularizers.l2(weight_decay)))
         model.add(BatchNormalization())
         model.add(Conv2D(384, (3, 3), activation='relu', name='block1_conv4', padding='same',kernel_regularizer=regularizers.l2(weight_decay)))
@@ -56,15 +54,6 @@ class CNN1_CRC:
         model.add(BatchNormalization())
         model.add(Dropout(0.4, name='dropout_2'))
         model.add(Flatten(name='flatten'))
-        model.add(Dense(2048, activation='relu', name='fc1', kernel_regularizer=regularizers.l2(weight_decay)))
-        model.add(BatchNormalization())
-        model.add(Dropout(0.5, name='dropout_3'))
-        model.add(Dense(2048, activation='relu', name='fc2', kernel_regularizer=regularizers.l2(weight_decay)))
-        model.add(BatchNormalization())
-        model.add(Dropout(0.5, name='dropout_4'))
-        model.add(Dense(256, activation='relu', name='fc3', kernel_regularizer=regularizers.l2(weight_decay)))
-        model.add(BatchNormalization())
-        model.add(Dropout(0.5, name='dropout_5'))
         model.add(Dense(4, activation='softmax', name='predictions'))
         model.summary()
         return model
@@ -163,8 +152,6 @@ class CNN1_CRC:
             vertical_flip=True)  # randomly flip images
         # (std, mean, and principal components if ZCA whitening is applied).
         datagen.fit(x_train)
-
-
 
         #optimization details
         sgd = optimizers.SGD(lr=learning_rate, decay=lr_decay, momentum=0.9, nesterov=True)
