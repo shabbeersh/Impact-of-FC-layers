@@ -17,7 +17,7 @@ Keras >= 2.1.2 <br/>
 Tensorflow-gpu >= 1.2
 
 ## Acknowledgements
-The few blocks of code is taken from [here](https://github.com/geifmany/cifar-vgg).
+The few blocks of code are taken from [here](https://github.com/geifmany/cifar-vgg).
 
 ## Citations
 
