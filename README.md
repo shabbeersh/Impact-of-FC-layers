@@ -20,3 +20,4 @@ Tensorflow-gpu >= 1.2
 The few blocks of code is taken from [here](https://github.com/geifmany/cifar-vgg).
 
 ## Citations
+
