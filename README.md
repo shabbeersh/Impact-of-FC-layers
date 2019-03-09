@@ -10,7 +10,7 @@ The objective of the paper is represented using the below figure.
 ![alt text](https://github.com/shabbeersh/Impact-of-FC-layers/blob/master/Impact_FC_layers_CNN.png)
 
 
-For more details, please read our [paper](https://arxiv.org/abs/1810.02797).
+For more details, please read our [paper](https://arxiv.org/abs/1902.02771).
 
 ## Requirements
 Keras >= 2.1.2 <br/>
