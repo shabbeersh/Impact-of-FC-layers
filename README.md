@@ -1,4 +1,4 @@
-# Impact of Fully Connected layers in CNN for Image Classification
+# Impact of Fully Connected Layers on Performance of Convolutional Neural Networks for Image Classification
 This research is carried out to find the necessity of fully connected (FC) layers in CNN for image classification.
 
 ## Abstract
