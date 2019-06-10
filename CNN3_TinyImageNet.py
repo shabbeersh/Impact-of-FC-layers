@@ -112,7 +112,6 @@ class CNN3_TinyImageNet:
     def train(self,model):
 
         #training parameters
-        batch_size = 128
         maxepoches = 250
         learning_rate = 0.1
         lr_decay = 1e-6
