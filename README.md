@@ -20,9 +20,9 @@ Tensorflow-gpu >= 1.2
 The few blocks of code are taken from [here](https://github.com/geifmany/cifar-vgg).
 
 ## Citations
-@article{basha2019impact,
+@article{shabbeer2019impact,
   title={Impact of Fully Connected Layers on Performance of Convolutional Neural Networks for Image Classification},
-  author={Basha, SH and Dubey, Shiv Ram and Pulabaigari, Viswanath and Mukherjee, Snehasis},
-  journal={arXiv preprint arXiv:1902.02771},
+  author={Shabbeer Basha, SH and Ram Dubey, Shiv and Pulabaigari, Viswanath and Mukherjee, Snehasis},
+  journal={Neurocomputing},
   year={2019}
 }
