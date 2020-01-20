@@ -14,7 +14,6 @@ from sklearn.cross_validation import train_test_split
 import numpy as np
 import re
 import os
-from keras.layers.core import Lambda
 from keras import backend as K
 from keras import regularizers
 import time
