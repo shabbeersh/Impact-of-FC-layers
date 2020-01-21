@@ -26,66 +26,57 @@ def sorted_alphanumeric(data):
 
 
 
-class CNN2_CRC:
+class CNN4CRC:
     def __init__(self,train=True):
+        self.weight_decay = 0.0005
         self.model = self.build_model()
         if train:
             self.model = self.train(self.model)
         else:
-            self.model.load_weights('CNN2_CRC.h5')
+            self.model.load_weights('CRC_CNN1.h5')
 
 
     def build_model(self):
         # Build the network of vgg for 10 classes with massive dropout and weight decay as described in the paper.
 
-        model = Sequential()
-        weight_decay = 0.0005
+        Conv2D_1 = Conv2D(64, (3,3), activation='relu', padding='same')(input)
+        MaxPool2D_1 = MaxPooling2D(pool_size=(2, 2), strides=(2,2))(Conv2D_1)
+        BatchNorm_1 = BatchNormalization()(MaxPool2D_1)
+        tower_1 = Conv2D(16, (1, 1), padding='same', activation='relu')(BatchNorm_1)
+        tower_1 = Conv2D(16, (3, 3), padding='same', activation='relu')(tower_1)
+        tower_2 = Conv2D(16, (1, 1), padding='same', activation='relu')(BatchNorm_1)
+        tower_2 = Conv2D(16, (5, 5), padding='same', activation='relu')(tower_2)
+        tower_3 = MaxPooling2D((3, 3), strides=(1, 1), padding='same')(BatchNorm_1)
+        tower_3 = Conv2D(16, (1, 1), padding='same', activation='relu')(tower_3)
+        output = keras.layers.concatenate([tower_1, tower_2, tower_3], axis=1)
+        Conv2D_2 = Conv2D(128, (3,3), activation='relu', padding='same')(output)
+        MaxPool2D_2 = MaxPooling2D(pool_size=(2, 2), strides=(2,2))(Conv2D_2)
+        BatchNorm_2 = BatchNormalization()(MaxPool2D_2)
+        tower_1 = Conv2D(16, (1, 1), padding='same', activation='relu')(BatchNorm_2)
+        tower_1 = Conv2D(16, (3, 3), padding='same', activation='relu')(tower_1)
+        tower_2 = Conv2D(16, (1, 1), padding='same', activation='relu')(BatchNorm_2)
+        tower_2 = Conv2D(16, (5, 5), padding='same', activation='relu')(tower_2)
+        tower_3 = MaxPooling2D((3, 3), strides=(1, 1), padding='same')(BatchNorm_2)
+        tower_3 = Conv2D(16, (1, 1), padding='same', activation='relu')(tower_3)
 
-        model.add(Conv2D(64, (3, 3), padding='same', input_shape=(32, 32, 3),
-                         kernel_regularizer=regularizers.l2(weight_decay)))
-        model.add(Activation('relu'))
-        model.add(BatchNormalization())
-        model.add(Dropout(0.3))
-        model.add(Conv2D(64, (3, 3), padding='same', kernel_regularizer=regularizers.l2(weight_decay)))
-        model.add(Activation('relu'))
-        model.add(BatchNormalization())
-        model.add(MaxPooling2D(pool_size=(2, 2)))
-        model.add(Conv2D(128, (3, 3), padding='same', kernel_regularizer=regularizers.l2(weight_decay)))
-        model.add(Activation('relu'))
-        model.add(BatchNormalization())
-        model.add(Dropout(0.4))
-        model.add(Conv2D(128, (3, 3), padding='same', kernel_regularizer=regularizers.l2(weight_decay)))
-        model.add(Activation('relu'))
-        model.add(BatchNormalization())
-        model.add(MaxPooling2D(pool_size=(2, 2)))
-        model.add(Conv2D(256, (3, 3), padding='same', kernel_regularizer=regularizers.l2(weight_decay)))
-        model.add(Activation('relu'))
-        model.add(BatchNormalization())
-        model.add(Dropout(0.4))
-        model.add(Conv2D(256, (3, 3), padding='same', kernel_regularizer=regularizers.l2(weight_decay)))
-        model.add(Activation('relu'))
-        model.add(BatchNormalization())
-        model.add(MaxPooling2D(pool_size=(2, 2)))
-        model.add(Conv2D(512, (3, 3), padding='same', kernel_regularizer=regularizers.l2(weight_decay)))
-        model.add(Activation('relu'))
-        model.add(BatchNormalization())
-        model.add(Dropout(0.4))
-        model.add(Conv2D(512, (3, 3), padding='same', kernel_regularizer=regularizers.l2(weight_decay)))
-        model.add(Activation('relu'))
-        model.add(BatchNormalization())
-        model.add(MaxPooling2D(pool_size=(2, 2)))
-        model.add(Conv2D(512, (3, 3), padding='same', kernel_regularizer=regularizers.l2(weight_decay)))
-        model.add(Activation('relu'))
-        model.add(BatchNormalization())
-        model.add(Dropout(0.4))
-        model.add(Conv2D(512, (3, 3), padding='same', kernel_regularizer=regularizers.l2(weight_decay)))
-        model.add(Activation('relu'))
-        model.add(BatchNormalization())
-        model.add(MaxPooling2D(pool_size=(2, 2)))
-        model.add(Dropout(0.5))
-        model.add(Flatten())
-        model.add(Dense(4))
-        model.add(Activation('softmax'))
+        output = keras.layers.concatenate([tower_1, tower_2, tower_3], axis=1)
+
+        Conv2D_3 = Conv2D(256, (3,3), activation='relu', padding='same')(output)
+        MaxPool2D_3 = MaxPooling2D(pool_size=(2, 2), strides=(2,2))(Conv2D_3)
+        BatchNorm_3 = BatchNormalization()(MaxPool2D_3)
+        tower_1 = Conv2D(16, (1, 1), padding='same', activation='relu')(BatchNorm_3)
+        tower_1 = Conv2D(16, (3, 3), padding='same', activation='relu')(tower_1)
+        tower_2 = Conv2D(16, (1, 1), padding='same', activation='relu')(BatchNorm_3)
+        tower_2 = Conv2D(16, (5, 5), padding='same', activation='relu')(tower_2)
+
+        tower_3 = MaxPooling2D((3, 3), strides=(1, 1), padding='same')(BatchNorm_3)
+        tower_3 = Conv2D(16, (1, 1), padding='same', activation='relu')(tower_3)
+    
+        output = keras.layers.concatenate([tower_1, tower_2, tower_3], axis=1)
+
+        Output = Flatten()(output)
+        Output = Dense(num_classes, activation='softmax')(Output)
+        model = Model(inputs=[input], outputs=[Output])
         model.summary()
         return model
 
@@ -138,7 +129,7 @@ class CNN2_CRC:
             for img in img_list:
                 #print(img)
                 img_path = data_path + '/' + dataset + '/' + img
-                img = image.load_img(img_path, target_size=(32, 32))
+                img = image.load_img(img_path, target_size=(35, 35))
                 x = image.img_to_array(img)
                 x = np.expand_dims(x, axis=0)
                 x = preprocess_input(x)
@@ -184,8 +175,6 @@ class CNN2_CRC:
         # (std, mean, and principal components if ZCA whitening is applied).
         datagen.fit(x_train)
 
-
-
         #optimization details
         sgd = optimizers.SGD(lr=learning_rate, decay=lr_decay, momentum=0.9, nesterov=True)
         model.compile(loss='categorical_crossentropy', optimizer=sgd,metrics=['accuracy'])
@@ -205,55 +194,19 @@ class CNN2_CRC:
 
 if __name__ == '__main__':
 
-    PATH = "/home/shabbeer/CV_Course/Shabbeer/crchistophenotypes32_32"
-    data_path = PATH
-    data_dir_list = sorted_alphanumeric(os.listdir(data_path))
-    print(data_dir_list)
-
-    img_data_list = []
-
-    for dataset in sorted_alphanumeric(data_dir_list):
-        img_list = sorted_alphanumeric(os.listdir(data_path + '/' + dataset))
-        print('Loaded the images of dataset-' + '{}\n'.format(dataset))
-        for img in img_list:
-            #print(img)
-            img_path = data_path + '/' + dataset + '/' + img
-            img = image.load_img(img_path, target_size=(32, 32))
-            x = image.img_to_array(img)
-            x = np.expand_dims(x, axis=0)
-            x = preprocess_input(x)
-            #     x = x/255
-            #print('Input image shape:', x.shape)
-            img_data_list.append(x)
-
-    img_data = np.array(img_data_list)
-    # img_data = img_data.astype('float32')
-    print(img_data.shape)
-    img_data = np.rollaxis(img_data, 1, 0)
-    print(img_data.shape)
-    img_data = img_data[0]
-    print(img_data.shape)
-    num_of_samples = img_data.shape[0]
-    print("sample", num_of_samples)
-    labels = np.ones((num_of_samples,), dtype='int64')
-    labels[0:7722] = 0
-    labels[7722:13434] = 1
-    labels[13434:20225] = 2
-    labels[20225:] = 3
-    names = ['epithelial', 'fibroblast', 'inflammatory', 'others']
-    num_classes = 4
-    Y = np_utils.to_categorical(labels, num_classes)
-    print("x shape:",img_data.shape)
-    print("y shape",Y.shape)
-
-    x_train, x_test, y_train, y_test = train_test_split(img_data, Y, test_size=0.2, random_state=2)
+    (x_train, y_train), (x_test, y_test) = cifar10.load_data()
     x_train = x_train.astype('float32')
     x_test = x_test.astype('float32')
 
-    y_train = keras.utils.to_categorical(y_train, 4)
-    y_test = keras.utils.to_categorical(y_test, 4)
+    print(x_train.shape)
 
-    model = CNN2_CRC()
+    x_train, x_test = self.normalize(x_train, x_test)
+
+    y_train = keras.utils.to_categorical(y_train, 10)
+    y_test = keras.utils.to_categorical(y_test, 10)
+
+
+    model = CNN4_CRC()
 
 
     print("---  Training time in seconds ---%s " % (time.time() - start_time))

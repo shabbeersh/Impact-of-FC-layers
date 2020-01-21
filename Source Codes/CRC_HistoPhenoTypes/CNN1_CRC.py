@@ -92,7 +92,7 @@ class CNN1_CRC:
         lr_decay = 1e-6
         lr_drop = 20
         # The data, shuffled and split between train and test sets:
-        PATH = "/home/shabbeer/CV_Course/Shabbeer/crchistophenotypes32_32"
+        PATH = "./Datasets/crchistophenotypes32_32"
         data_path = PATH
         data_dir_list = sorted_alphanumeric(os.listdir(data_path))
         print(data_dir_list)
@@ -170,7 +170,7 @@ class CNN1_CRC:
 
 if __name__ == '__main__':
 
-    PATH = "/home/shabbeer/CV_Course/Shabbeer/crchistophenotypes32_32"
+    PATH = "./Datasets/crchistophenotypes32_32"
     data_path = PATH
     data_dir_list = sorted_alphanumeric(os.listdir(data_path))
     print(data_dir_list)
